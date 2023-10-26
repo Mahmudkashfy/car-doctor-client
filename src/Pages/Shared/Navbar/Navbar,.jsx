@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.svg";
 
-const Navbar = () => {
+const  Navbar = () => {
   const navItems = (
     <>
-      <li><Link  className="rounded" to='./'>Home</Link></li>
+    
+      <li><Link className="rounded"  to='./'>Home</Link></li>
       <li><Link  className="rounded" to='./about'>About</Link></li>
       <li><Link  className="rounded" to='./about'>Service</Link></li>
       <li><Link  className="rounded" to='./about'>Blog</Link></li>
       <li><Link  className="rounded" to='./about'>Contact</Link></li>
       <li><Link  className="rounded" to='./login'>Login</Link></li>
+      {/* <span/><span/><span/><span/> */}
     </>
   );
   return (
@@ -44,7 +46,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-base font-semibold">
+        <ul className="menu menu-horizontal px-1 text-base font-semibold btn_g">
          {navItems}
         </ul>
       </div>
