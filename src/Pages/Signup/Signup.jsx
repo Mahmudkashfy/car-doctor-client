@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import login from "./../../assets/images/login/login.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Result } from "postcss";
 
 const Signup = () => {
-
   const { createUser } = useContext(AuthContext);
+  const location = useLocation();
+  const Navigate = useNavigate()
 
   const handleSignup = (event) => {
     event.preventDefault();
@@ -20,6 +21,7 @@ const Signup = () => {
       .then((Result) => {
         const user = Result.user;
         console.log(user);
+        Navigate(location?.state ? location?.state : '/');
       })
       .catch((error) => console.log(error));
   };

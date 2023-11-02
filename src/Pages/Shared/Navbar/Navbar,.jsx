@@ -5,24 +5,33 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 
 const  Navbar = () => {
 
-  const { user } = useContext(AuthContext);
+  const { user, LogOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    LogOut()
+    .then(() =>{})
+    .catch(error => console.log(error));
+  };
 
   const navItems = (
     <>
     
       <li><Link className="rounded"  to='./'>Home</Link></li>
       <li><Link  className="rounded" to='./about'>About</Link></li>
-      <li><Link  className="rounded" to='./about'>Service</Link></li>
-      <li><Link  className="rounded" to='./about'>Blog</Link></li>
-      <li><Link  className="rounded" to='./about'>Contact</Link></li>
+      {/* <li><Link  className="rounded" to='./about'>Service</Link></li>
+      <li><Link  className="rounded" to='./about'>Blog</Link></li> 
+      <li><Link  className="rounded" to='./about'>Contact</Link></li> */}
       {
-        user ? <li><button className="rounded">Sign Out</button> </li>
-        :<li><Link  className="rounded" to='./login'>Login</Link></li>
+        user?.email?<>
+        <li><Link  className="rounded" to='./bookings'>My Booking</Link></li>
+        <li><button onClick={handleLogOut} className="rounded">Log out</button> </li>
+        </>
+        : <li><Link  className="rounded" to='./login'>Login</Link></li>
       }
     </>
   );
   return (
-    <div className="navbar px-0 py-2">
+    <div className="navbar px-0 py-2 mb-5">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -58,7 +67,7 @@ const  Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-outline btn-neutral rounded md:text-base font-semibold">Appointment</a>
+        <a className="btn btn-outline border-orange-500 text-orange-500 rounded md:text-base font-semibold">Appointment</a>
       </div>
     </div>
   );
